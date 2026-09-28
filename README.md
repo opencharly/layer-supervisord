@@ -71,7 +71,6 @@ charly logs <image>
   `XDG_RUNTIME_DIR` environment, the `/tmp/xdg-runtime` creation step, the
   `plan:` checks, and the embedded `skill:` entity.
 - `templates/supervisord.header.conf` — the global config header.
-- `.github/workflows/` — the org-wide `charly/pr-validator` gate; no per-repo candy gate.
 - `.github/workflows/tag-on-merge.yml` — CalVer tag + `CHANGELOG/` on merge.
 - `README.md` — this user overview.
 

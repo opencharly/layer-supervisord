@@ -14,7 +14,6 @@ Canonical files:
 - `templates/supervisord.header.conf` — the global `[supervisord]` /
   `[unix_http_server]` / `[supervisorctl]` / `[rpcinterface:supervisor]` header
   prepended to every generated `supervisord.conf`.
-- `.github/workflows/` — the org-wide `charly/pr-validator` gate; there is no per-repo candy gate.
 - `.github/workflows/tag-on-merge.yml` — CalVer tag + `CHANGELOG/` on merge.
 - `README.md` — user overview only; never agent guidance.
 
@@ -33,8 +32,9 @@ Canonical files:
 
 - `charly box validate` at the repo root — the structural check: the manifest
   must parse and validate at the installed charly.
-- The merge gate is the org-wide `charly/pr-validator` (required check
-  `validate / validate`); there is no per-repo candy gate.
+- The merge gate is the **org-wide** `charly/pr-validator` (required check
+  `validate / validate`, defined in `opencharly/.github`); this repo has no
+  per-repo candy gate.
 - The candy's `plan:` ends in a runtime `check:` (`supervisorctl pid`,
   `context: [runtime]`) that proves supervisord is PID 1 and its control socket
   answers — prefer it over `supervisorctl status`, which exits non-zero when any
