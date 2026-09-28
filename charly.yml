@@ -1,7 +1,5 @@
-version: 2026.261.1747
 supervisord:
     candy:
-        version: 2026.159.1324
         description: |
             supervisord is the container init that supervises every service and provides a per-user XDG_RUNTIME_DIR
             Installs the supervisor package, providing /usr/bin/supervisord (PID 1
