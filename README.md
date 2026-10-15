@@ -69,7 +69,9 @@ charly logs <image>
 
 - `charly.yml` — the candy manifest: the `supervisor` package, the
   `XDG_RUNTIME_DIR` environment, the `/tmp/xdg-runtime` creation step, the
-  `plan:` checks, and the embedded `skill:` entity.
+  `plan:` checks, and the `/charly-infrastructure:supervisord` skill's routing
+  metadata.
+- `.agents/skills/supervisord/SKILL.md` — that skill's prose.
 - `templates/supervisord.header.conf` — the global config header.
 - `.github/workflows/tag-on-merge.yml` — CalVer tag + `CHANGELOG/` on merge.
 - `README.md` — this user overview.

@@ -3,14 +3,15 @@
 Standalone candy repo for the `supervisord` layer — the default container init
 and process supervisor. The candy lives in `charly.yml` at the repo root: the
 `supervisor` package, the `XDG_RUNTIME_DIR` environment, a `plan:` that creates
-the per-user runtime directory and asserts the install, and the embedded
-`skill:` entity projected into the marketplace corpus as
-`/charly-infrastructure:supervisord`. The generated global config header lives at
+the per-user runtime directory and asserts the install, and the
+`/charly-infrastructure:supervisord` skill, projected into the marketplace
+corpus. The generated global config header lives at
 `templates/supervisord.header.conf`.
 
 Canonical files:
 
-- `charly.yml` — the `supervisord:` candy entity and the `supervisord-skill:` skill entity.
+- `charly.yml` — the `supervisord:` candy entity and the `supervisord` skill's
+  routing metadata (its `family` and `owner`).
 - `templates/supervisord.header.conf` — the global `[supervisord]` /
   `[unix_http_server]` / `[supervisorctl]` / `[rpcinterface:supervisor]` header
   prepended to every generated `supervisord.conf`.
@@ -44,9 +45,10 @@ Canonical files:
 
 ## Modify this repo
 
-- Edit the `supervisord:` candy entity AND the `supervisord-skill:` skill entity
-  in `charly.yml` together. The skill is the projected usage source, so a
-  behaviour change that is not mirrored in the skill leaves the corpus stale.
+- A behaviour change is mirrored in the `/charly-infrastructure:supervisord`
+  skill as well as in the `supervisord:` candy entity: the skill is the
+  projected usage source, so a change that is not mirrored there leaves the
+  corpus stale.
 - Changes to the global config header belong in `templates/supervisord.header.conf`
   and must stay consistent with the plan checks and the skill's documented
   behaviour.
