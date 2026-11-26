@@ -101,7 +101,7 @@ Layers declare services under a single `service:` key (singular; value is a list
 | `exit_code:` | Success codes for `restart: no` / `on-failure`. |
 | `priority:` | Startup order; lower = earlier. |
 
-See `/charly-selkies:selkies-core` for the canonical consumer (the supervised `[program:chrome]` service: `restart: always` + `start_secs`/`start_retries`).
+The supervised `[program:chrome]` service (`restart: always` + `start_secs`/`start_retries`) is the canonical consumer pattern.
 
 ## Polymorphism: a candy that runs on BOTH supervisord and systemd
 
@@ -226,7 +226,7 @@ silently fails when pgrep is absent. Prefer `service:` (which uses
 supervisorctl internally) for program-liveness checks. See `/charly-check:check`
 Authoring Gotcha #3.
 
-`supervisorctl avail | grep -q '^<name>\b'` is the idiomatic way to check whether a program is defined (as opposed to whether it's currently running). This is what labwc's autostart uses to decide whether to hand off Chrome to supervisord or fall back to a direct launch — see `/charly-selkies:labwc` (autostart Chrome-duplication race) for the canonical pattern.
+`supervisorctl avail | grep -q '^<name>\b'` is the idiomatic way to check whether a program is defined (as opposed to whether it's currently running). This is what labwc's autostart uses to decide whether to hand off Chrome to supervisord or fall back to a direct launch for the canonical pattern.
 
 ## Header File
 
@@ -274,11 +274,10 @@ Container-mode logs are unaffected — supervisord is still PID 1 there.
 ## Related Candies
 
 - `/charly-languages:python` -- Optional pixi-python env (NOT a dep of this candy; supervisord uses system python3 from RPM)
-- `/charly-selkies:selkies-core` -- owns the supervised `[program:chrome]` service (`restart: always`, `start_secs`/`start_retries`) for both selkies flavors
 - `/charly-selkies:chrome` -- the chrome candy's cgroup resource caps (bound a Chrome crash loop's blast radius)
 - `/charly-infrastructure:traefik` -- Reverse proxy (depends on supervisord)
 - `/charly-infrastructure:dbus-layer` -- D-Bus session bus (depends on supervisord)
-- `/charly-ollama:ollama`, `/charly-openclaw:openclaw`, `/charly-infrastructure:postgresql`, `/charly-infrastructure:redis`, `/charly-selkies:sway` -- All ship `service:` blocks
+- `/charly-ollama:ollama`, `/charly-openclaw:openclaw`, `/charly-infrastructure:postgresql`, `/charly-infrastructure:redis` -- All ship `service:` blocks
 
 ## Related Commands
 
